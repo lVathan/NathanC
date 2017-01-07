@@ -3,7 +3,7 @@ from flask import request
 from flask import render_template
 from flask import session, redirect,url_for, flash
 from datetime import datetime
-
+from werkzeug.contrib.fixers import ProxyFix
 
 from flask_script import Manager
 from flask_bootstrap import Bootstrap
@@ -14,6 +14,9 @@ from wtforms.validators import Required
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'get8jz'
+app.wsgi_app = ProxyFix(app.wsgi_app)
+
+
 
 bootstrap = Bootstrap(app)
 manager = Manager(app)
