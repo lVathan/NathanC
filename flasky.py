@@ -48,6 +48,11 @@ def user(name):
     user_agent = request.headers.get('User-Agent')
     return render_template('user.html', name=name, user_agent=user_agent)
 
+@app.route('/resume')
+def resume():
+    return render_template('resume.html')
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
